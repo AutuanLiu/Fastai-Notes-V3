@@ -1,0 +1,3 @@
+[submodule "course-v3"]
+	path = course-v3
+	url = git@github.com:fastai/course-v3.git

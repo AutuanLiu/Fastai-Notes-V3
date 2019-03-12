@@ -1,5 +1,4 @@
 from fastai.vision import *
-from fastai.core import *
 from fastai.basic_train import *
 
 path = untar_data(URLs.MNIST_SAMPLE)

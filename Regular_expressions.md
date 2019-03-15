@@ -1,5 +1,7 @@
 # 正则表达式
 
+## 基本内容
+
 正则表达式在从文本（如代码，日志文件，电子表格甚至文档）中提取信息时非常有用。使用正则表达式时首先要认识到的是，所有内容本质上都是一个字符，
 我们通过编写模式以匹配特定的字符序列。 大多数模式使用普通的 ASCII 码，包括字母，数字，标点符号和键盘上的其他符号，如 `%$@!`，但是 unicode 字符也可用于匹配任何类型的国际文本。
 
@@ -36,5 +38,60 @@
 正则表达式不仅可以匹配文本，还可以提取信息以便进一步处理。这是通过定义**字符组 group**并使用特殊括号 `(and)` 来完成的。括号内的任何**子模式**将组合成一个组 group 进行匹配。 实际上，这可以用于从各种数据中提取电话号码或电子邮件等信息。
 `^(IMG\d+\.png)$` 表示以 IMG 开头，中间是一个或多个数字，以 .png 结尾，提取整个文件名。而 `^(IMG\d+)\.png$` 只提取 . 之前的信息。
 
+**Nested groups**: `^(IMG(\d+))\.png$` 不仅提取文件名，同时提取图片编号。内部嵌套的 group 模式是为了提取数字信息。嵌套组在模式中从左向右读取，第一个捕获的结果是第一个括号组的内容。**分别提取**
+
+**全部提取**：`(\d+)x(\d+)` 提取分辨率的长度和宽度（1920x768）-> 1920 768[示例](https://regexone.com/lesson/more_groups)
+
+使用 `|` 表示逻辑或，如 `(milk|bread|juice)` 表示 milk，bread，juice 中的一种。
+
+`\S` 表示任意非空格字符，`\W` 表示任意非字母字符，`\b` 匹配边界，`\1`, `\2` 用于引用通过组 group 捕获的内容， `\2-\1` 表示互换捕获内容的位置。
+
+## Python3 的正则表达式
+
+Python3 使用 `re` 库开实现正则表达式。要求使用 raw strings （普通字符串 "ab*"，raw字符串 r"ab*"）。raw string 不解释字符串中出现的转移符号 '\'。
+
+`re.search()` 方法返回 None 表示未匹配成功或者 re.MatchObject 对象存储匹配内容。
+
+```python
+matchObject = re.search(pattern, input_str, flags=0)
+matchList = re.findall(pattern, input_str, flags=0)
+matchList = re.finditer(pattern, input_str, flags=0)
+replacedString = re.sub(pattern, replacement_pattern, input_str, count, flags=0)
+```
+
+示例；
+
+```python
+import re
+# Lets use a regular expression to match a date string. Ignore
+# the output since we are just testing if the regex matches.
+regex = r"([a-zA-Z]+) (\d+)"
+if re.search(regex, "June 24"):
+    # Indeed, the expression "([a-zA-Z]+) (\d+)" matches the date string
+
+    # If we want, we can use the MatchObject's start() and end() methods
+    # to retrieve where the pattern matches in the input string, and the
+    # group() method to get all the matches and captured groups.
+    match = re.search(regex, "June 24")
+
+    # This will print [0, 7), since it matches at the beginning and end of the
+    # string
+    print("Match at index %s, %s" % (match.start(), match.end()))
+
+    # The groups contain the matched values.  In particular:
+    #    match.group(0) always returns the fully matched string
+    #    match.group(1), match.group(2), ... will return the capture
+    #            groups in order from left to right in the input string
+    #    match.group() is equivalent to match.group(0)
+
+    print("Full match: %s" % (match.group(0)))
+    print("Month: %s" % (match.group(1)))
+    print("Day: %s" % (match.group(2)))
+else:
+    # If re.search() does not match, then None is returned
+    print("The regex pattern does not match. :(")
+```
+
 ## 参考文献
 1. [RegexOne - Learn Regular Expressions - Lesson 1: An Introduction, and the ABCs](https://regexone.com/)
+2. [RegexOne - Learn Regular Expressions - Python](https://regexone.com/references/python)

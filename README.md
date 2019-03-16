@@ -5,6 +5,7 @@
 |file name|info|update date
 |---|---|---|
 Regular_expressions.md|正则表达式|2019/3/15
+How_tos.md|策略以及相关知识点|2019/3/16
 
 
 ## 参考资料

@@ -15,3 +15,9 @@ How_tos.md|策略以及相关知识点|2019/3/16
 
 ## 参考资料
 1. [Fast.ai v3 2019课程中文版笔记 - Part 1 (2019) / UTC+8 China / SE Asia - Deep Learning Course Forums](https://forums.fast.ai/t/fast-ai-v3-2019/39325)
+2. [Practical Deep Learning for Coders, v3 | fast.ai course v3](https://course.fast.ai/)
+3. [fastai/fastai: The fastai deep learning library, plus lessons and tutorials](https://github.com/fastai/fastai)
+
+## 论文
+1. [One-Cycle Policy Fitting paper](https://arxiv.org/pdf/1803.09820.pdf)
+2. [LNCS 8689 - Visualizing and Understanding Convolutional Networks](https://cs.nyu.edu/~fergus/papers/zeilerECCV2014.pdf)

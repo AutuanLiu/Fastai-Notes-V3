@@ -10,6 +10,8 @@
   - [Jupyter Notebook Server Config](#jupyter-notebook-server-config)
   - [Install Cuda](#install-cuda)
   - [ufw 设置防火墙](#ufw-%E8%AE%BE%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99)
+  - [克隆带有子模块的库](#%E5%85%8B%E9%9A%86%E5%B8%A6%E6%9C%89%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BA%93)
+  - [撤销还未 commit 的本地修改](#%E6%92%A4%E9%94%80%E8%BF%98%E6%9C%AA-commit-%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9)
   - [参考文献](#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE)
 
 ## 常用命令行操作
@@ -121,11 +123,6 @@
 |`cat /proc/cpuinfo`|查询CPU信息|
 |`sar -u 5 10`|查看CPU使用情况|
 |`date`|显示当前系统时间|
-
-
-
-
-
 
 
 ### 用户权限
@@ -297,6 +294,31 @@ nvidia-smi -pm 1
 |sudo ufw allow from 123.45.67.89|允许某ip|
 |sudo ufw delete allow 80|删除一条规则|
 
+## 克隆带有子模块的库
+
+```bash
+$ git clone 仓库地址 # 克隆该项目
+```
+
+克隆下来后只会发现子模块并没有一起克隆下来，需要将子模块也克隆下来。
+
+```bash
+$ git submodule init #初始化你的本地配置文件
+```
+
+```bash
+$ git submodule update #从那个项目拉取所有数据并检出你上层项目里所列的合适的提交
+```
+
+```bash
+$ git checkout master # 切换到主分支
+```
+
+## 撤销还未 commit 的本地修改
+
+```bash
+$ git checkout -- filename # or . 表示所有的文件
+```
 
 ## 参考文献
 1. [Linux工具快速教程 — Linux Tools Quick Tutorial](https://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)

@@ -7,6 +7,9 @@
   - [Linux 其他操作](#linux-%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C)
     - [用户权限](#%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90)
   - [读写权限](#%E8%AF%BB%E5%86%99%E6%9D%83%E9%99%90)
+  - [Jupyter Notebook Server Config](#jupyter-notebook-server-config)
+  - [Install Cuda](#install-cuda)
+  - [ufw 设置防火墙](#ufw-%E8%AE%BE%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99)
   - [参考文献](#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE)
 
 ## 常用命令行操作
@@ -49,7 +52,7 @@
 ## Linux 用户管理
 |命令|含义|
 |---|---|
-|`useradd -m username`|为用户创建相应的帐号和用户目录 /home/username|
+|`useradd –d /home/username -m username`|为用户创建相应的帐号和用户目录 /home/username|
 |`passwd username`|为用户设置密码
 |`userdel -r username`|删除用户|
 |`su userB`| 切换登录用户|
@@ -175,6 +178,125 @@ $chmod g+w blogs        # 对组用户给文件blogs增加可写权限
 ```bash
 $chmod 740 main     # 将main的用户权限设置为 rwxr-----
 ```
+
+## Jupyter Notebook Server Config
+
+1. 安装Jupyter Notebook库
+
+```bash
+$ pip install Jupyter
+```
+
+2. 生成Jupyter Notebook 配置文件
+
+生成的配置文件，后来用来设置服务器的配置
+
+```bash
+$ jupyter notebook --generate-config
+```
+
+
+3. 设置Jupyter Notebook密码
+
+设置密码用于设置服务器配置，以及登录Jupyter。打开 iPython 终端，输入以下：
+
+```bash
+In [1]: from IPython.lib import passwd
+In [2]: passwd()
+Enter password:
+Verify password:
+Out[2]: '这里是密码'
+```
+
+4. 设置服务器配置文件
+
+```bash
+$ nano ~/.jupyter/jupyter_notebook_config.py
+```
+
+修改以下参数设置
+
+   * c.NotebookApp.ip = '*' # 所有绑定服务器的IP都能访问，若想只在特定ip访问，输入ip地址即可, 也可以使用 0.0.0.0 代表所有IP
+   * c.NotebookApp.port = 6666 # 端口设置，默认是8888
+   * c.NotebookApp.open_browser = False # 我们并不想在服务器上直接打开 Jupyter Notebook，所以设置成False
+   * c.NotebookApp.notebook_dir = '/home/username/jupyter_projects' # 这里是设置Jupyter的根目录
+   * c.NotebookApp.allow_root = True # 为了安全，Jupyter默认不允许以 root 权限启动jupyter
+   * c.NotebookApp.password = 'sha1:e1c8cc'  # 生成的密码
+
+
+5. 启动Jupyter 远程服务器
+
+```bash
+$ jupyter notebook
+```
+
+6. 远程访问
+
+- 方法一: 在本地浏览器上，输入 http://ip_address:port，将会打开远程Jupyter
+
+- 方法二：如果方法一登陆失败，则有可能是服务器防火墙设置的问题，此时最简单的方法是在本地建立一个ssh通道：
+  - 在本地终端中输入ssh username@address_of_remote -L127.0.0.1:your_port:127.0.0.1:remote_port
+  - 切换到对应的环境，打开 jupyter notebook
+  - 在localhost:your_port 就可以直接访问远程的jupyter
+
+
+## Install Cuda
+[cuda install](https://cloud.google.com/compute/docs/gpus/add-gpus)
+
+* Ubuntu16.04 Cuda9
+
+```bash
+#!/bin/bash
+echo "Checking for CUDA and installing."
+# Check for CUDA and try to install.
+if ! dpkg-query -W cuda-9-0; then
+  # The 16.04 installer works with 16.10.
+  curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
+  dpkg -i ./cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
+  apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+  apt-get update
+  apt-get install cuda-9-0 -y
+fi
+# Enable persistence mode
+nvidia-smi -pm 1
+```
+
+* Ubuntu16.04 Cuda10
+
+```bash
+#!/bin/bash
+echo "Checking for CUDA and installing."
+# Check for CUDA and try to install.
+if ! dpkg-query -W cuda-9-0; then
+  # The 16.04 installer works with 16.10.
+  curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.1.105-1_amd64.deb
+  dpkg -i ./cuda-repo-ubuntu1604_10.1.105-1_amd64.deb
+  apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+  apt-get update
+  apt-get install cuda -y
+fi
+# Enable persistence mode
+nvidia-smi -pm 1
+```
+
+## ufw 设置防火墙
+
+|命令|含义|
+|---|---|
+|sudo apt-get install ufw|安装 ufw|
+|ufw status|查看状态|
+|sudo ufw default allow outgoing|允许所有传出连接|
+|sudo ufw default deny incoming|拒绝所有传入|
+|sudo ufw allow ssh|允许ssh|
+|sudo ufw allow http|允许http|
+|sudo ufw allow https|允许https|
+|sudo ufw allow 22|允许22端口|
+|sudo ufw deny 111|禁止 111端口|
+|sudo ufw allow 80/tcp|允许80 tcp端口|
+|sudo ufw allow 1725/udp|允许1725udp端口|
+|sudo ufw allow from 123.45.67.89|允许某ip|
+|sudo ufw delete allow 80|删除一条规则|
+
 
 ## 参考文献
 1. [Linux工具快速教程 — Linux Tools Quick Tutorial](https://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)

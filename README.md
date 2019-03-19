@@ -18,6 +18,10 @@ How_tos.md|策略以及相关知识点|2019/3/16
 2. [Practical Deep Learning for Coders, v3 | fast.ai course v3](https://course.fast.ai/)
 3. [fastai/fastai: The fastai deep learning library, plus lessons and tutorials](https://github.com/fastai/fastai)
 4. [hardikvasa/google-images-download: Python Script to download hundreds of images from 'Google Images'. It is a ready-to-run code!](https://github.com/hardikvasa/google-images-download)
+5. [The Top 10 Algorithms in Applied Mathematics](https://nickhigham.wordpress.com/2016/03/29/the-top-10-algorithms-in-applied-mathematics/)
+6. [Machine Learning is Fun! – Adam Geitgey – Medium](https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471)
+7. [九五要当学霸 - 知乎](https://www.zhihu.com/people/zhao95/posts)
+8. [NMF_tutorial_ICME-2014.pdf](https://perso.telecom-paristech.fr/essid/teach/NMF_tutorial_ICME-2014.pdf)
 
 ## 论文
 1. [One-Cycle Policy Fitting paper](https://arxiv.org/pdf/1803.09820.pdf)

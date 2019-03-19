@@ -1,3 +1,6 @@
 [submodule "course-v3"]
 	path = course-v3
 	url = git@github.com:fastai/course-v3.git
+[submodule "numerical-linear-algebra"]
+	path = numerical-linear-algebra
+	url = git@github.com:fastai/numerical-linear-algebra.git

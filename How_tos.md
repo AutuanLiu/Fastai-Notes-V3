@@ -235,6 +235,8 @@ $ jupyter notebook
   - 在本地终端中输入ssh username@address_of_remote -L127.0.0.1:your_port:127.0.0.1:remote_port
   - 切换到对应的环境，打开 jupyter notebook
   - 在localhost:your_port 就可以直接访问远程的jupyter
+- ssh remote_user@remote_host 22 -N -f -L localhost:8888:localhost:8889
+  -  -N 告诉SSH没有命令要被远程执行； -f 告诉SSH在后台执行； -L 是指定port forwarding的配置
 
 
 ## Install Cuda

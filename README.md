@@ -8,9 +8,10 @@ Regular_expressions.md|正则表达式|2019/3/15
 How_tos.md|策略以及相关知识点|2019/3/16
 
 
-## Jupyter Notebooks
+## Jupyter Notebooks Viewer
 
-[Jupyter Notebook Viewer](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/nbs/)
+[fastai Deep Learning](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/fastai_DL_nbs/)
+[fastai numerical-linear-algebra](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/fastai_NLA_nbs/)
 
 
 ## 参考资料

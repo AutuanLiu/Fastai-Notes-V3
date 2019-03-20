@@ -10,8 +10,16 @@ How_tos.md|策略以及相关知识点|2019/3/16
 
 ## Jupyter Notebooks Viewer
 
-[fastai Deep Learning](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/fastai_DL_nbs/)
-[fastai numerical-linear-algebra](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/fastai_NLA_nbs/)
+- [fastai Deep Learning](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/fastai_DL_nbs/)
+  - [lesson01_pets](./fastai_DL_nbs/lesson01_pets.ipynb)
+  - [lesson02_make_datasets](./fastai_DL_nbs/lesson02_make_datasets.ipynb)
+  - [lesson03_image_segmentation](./fastai_DL_nbs/lesson03_image_segmentation.ipynb)
+  - [CollaborativeFiltering](./fastai_DL_nbs/CollaborativeFiltering.ipynb)
+- [fastai numerical-linear-algebra](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/fastai_NLA_nbs/)
+  - [basic_markov_chains](./fastai_NLA_nbs/basic_markov_chains.ipynb)
+  - [Matrix_decompositions](./fastai_NLA_nbs/Matrix_decompositions.ipynb)
+  - [NMF_and_SVD](./fastai_NLA_nbs/NMF_and_SVD.ipynb)
+  - [PageRank](./fastai_NLA_nbs/PageRank.ipynb)
 
 
 ## 参考资料

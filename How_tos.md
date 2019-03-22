@@ -5,6 +5,7 @@
   - [如何安装常用软件](#%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6)
   - [Linux 用户管理](#linux-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86)
   - [Linux 其他操作](#linux-%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C)
+  - [查看指定端口并关闭](#%E6%9F%A5%E7%9C%8B%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%E5%B9%B6%E5%85%B3%E9%97%AD)
     - [用户权限](#%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90)
   - [读写权限](#%E8%AF%BB%E5%86%99%E6%9D%83%E9%99%90)
   - [Jupyter Notebook Server Config](#jupyter-notebook-server-config)
@@ -125,6 +126,13 @@
 |`sar -u 5 10`|查看CPU使用情况|
 |`date`|显示当前系统时间|
 
+## 查看指定端口并关闭
+
+1. 查看指定端口，可以结合grep命令：netstat -ap | grep 8080
+2. 也可以使用lsof命令：lsof -i:8080
+
+* 关闭端口使用
+  1. 若要关闭使用这个端口的程序，使用kill + 对应的pid: kill -9 PID号
 
 ### 用户权限
 

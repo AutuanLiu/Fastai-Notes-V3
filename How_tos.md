@@ -65,6 +65,7 @@
 |`more /etc/passwd`|查看**所有用户及权限**, 系统的所有用户及所有组信息分别记录在两个文件中：`/etc/passwd` , `/etc/group` 默认情况下这两个文件对所有用户可读|
 |`more /etc/group`|查看**所有的用户组及权限**|
 |`usermod -G sudo username`|给 sudo 权限|
+|`# useradd -s /bin/bash {用户昵称}`|指定用户shell或者通过修改/etc/passwd文件|
 
 ## Linux 其他操作
 

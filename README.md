@@ -35,6 +35,8 @@ How_tos.md|策略以及相关知识点|2019/3/16
 10. [command-line-data-awk-sed-join-date](https://data36.com/command-line-data-awk-sed-join-date/)
 11. [bash](https://devhints.io/bash)
 12. [sql](https://data36.com/learn-sql-for-data-analysis-from-scratch/)
+9. [hiromis/notes](https://github.com/hiromis/notes)
+10. [Deep Learning Lesson 1 Notes - Part 1 (2019) - Deep Learning Course Forums](https://forums.fast.ai/t/deep-learning-lesson-1-notes/27748)
 
 ## 论文
 1. [One-Cycle Policy Fitting paper](https://arxiv.org/pdf/1803.09820.pdf)

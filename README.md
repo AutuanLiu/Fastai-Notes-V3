@@ -31,6 +31,8 @@ How_tos.md|策略以及相关知识点|2019/3/16
 6. [Machine Learning is Fun! – Adam Geitgey – Medium](https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471)
 7. [九五要当学霸 - 知乎](https://www.zhihu.com/people/zhao95/posts)
 8. [NMF_tutorial_ICME-2014.pdf](https://perso.telecom-paristech.fr/essid/teach/NMF_tutorial_ICME-2014.pdf)
+9. [hiromis/notes](https://github.com/hiromis/notes)
+10. [Deep Learning Lesson 1 Notes - Part 1 (2019) - Deep Learning Course Forums](https://forums.fast.ai/t/deep-learning-lesson-1-notes/27748)
 
 ## 论文
 1. [One-Cycle Policy Fitting paper](https://arxiv.org/pdf/1803.09820.pdf)

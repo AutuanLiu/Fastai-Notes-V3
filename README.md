@@ -31,6 +31,10 @@ How_tos.md|策略以及相关知识点|2019/3/16
 6. [Machine Learning is Fun! – Adam Geitgey – Medium](https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471)
 7. [九五要当学霸 - 知乎](https://www.zhihu.com/people/zhao95/posts)
 8. [NMF_tutorial_ICME-2014.pdf](https://perso.telecom-paristech.fr/essid/teach/NMF_tutorial_ICME-2014.pdf)
+9. [BashBook](https://books.goalkicker.com/BashBook/)
+10. [command-line-data-awk-sed-join-date](https://data36.com/command-line-data-awk-sed-join-date/)
+11. [bash](https://devhints.io/bash)
+12. [sql](https://data36.com/learn-sql-for-data-analysis-from-scratch/)
 
 ## 论文
 1. [One-Cycle Policy Fitting paper](https://arxiv.org/pdf/1803.09820.pdf)

@@ -14,12 +14,16 @@ How_tos.md|策略以及相关知识点|2019/3/16
   - [lesson01_pets](./fastai_DL_nbs/lesson01_pets.ipynb)
   - [lesson02_make_datasets](./fastai_DL_nbs/lesson02_make_datasets.ipynb)
   - [lesson03_image_segmentation](./fastai_DL_nbs/lesson03_image_segmentation.ipynb)
+  - [lesson03_head_pose](./fastai_DL_nbs/lesson03_lesson03_head_pose.ipynb)
+  - [lesson03_imdb](./fastai_DL_nbs/lesson03_imdb.ipynb)
+  - [lesson03_planet](./fastai_DL_nbs/lesson03_planet.ipynb)
   - [CollaborativeFiltering](./fastai_DL_nbs/CollaborativeFiltering.ipynb)
 - [fastai numerical-linear-algebra](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/fastai_NLA_nbs/)
   - [basic_markov_chains](./fastai_NLA_nbs/basic_markov_chains.ipynb)
   - [Matrix_decompositions](./fastai_NLA_nbs/Matrix_decompositions.ipynb)
   - [NMF_and_SVD](./fastai_NLA_nbs/NMF_and_SVD.ipynb)
   - [PageRank](./fastai_NLA_nbs/PageRank.ipynb)
+- [AerialCactusIdentification](./AerialCactusIdentification.ipynb)
 
 
 ## 参考资料
@@ -35,8 +39,8 @@ How_tos.md|策略以及相关知识点|2019/3/16
 10. [command-line-data-awk-sed-join-date](https://data36.com/command-line-data-awk-sed-join-date/)
 11. [bash](https://devhints.io/bash)
 12. [sql](https://data36.com/learn-sql-for-data-analysis-from-scratch/)
-9. [hiromis/notes](https://github.com/hiromis/notes)
-10. [Deep Learning Lesson 1 Notes - Part 1 (2019) - Deep Learning Course Forums](https://forums.fast.ai/t/deep-learning-lesson-1-notes/27748)
+13. [hiromis/notes](https://github.com/hiromis/notes)
+14. [Deep Learning Lesson 1 Notes - Part 1 (2019) - Deep Learning Course Forums](https://forums.fast.ai/t/deep-learning-lesson-1-notes/27748)
 
 ## 论文
 1. [One-Cycle Policy Fitting paper](https://arxiv.org/pdf/1803.09820.pdf)

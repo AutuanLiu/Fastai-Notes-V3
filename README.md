@@ -19,6 +19,7 @@ How_tos.md|策略以及相关知识点|2019/3/16
   - [lesson03_planet](./fastai_DL_nbs/lesson03_planet.ipynb)
   - [lesson04_CollaborativeFiltering](./fastai_DL_nbs/lesson04_CollaborativeFiltering.ipynb)
   - [lesson05_collaorative_filtering](./fastai_DL_nbs/lesson05_collaorative_filtering.ipynb)
+  - [lesson06_pets_more](./fastai_DL_nbs/lesson06_pets_more.ipynb)
 - [fastai numerical-linear-algebra](https://nbviewer.jupyter.org/github/AutuanLiu/Fastai-Notes-V3/tree/master/fastai_NLA_nbs/)
   - [basic_markov_chains](./fastai_NLA_nbs/basic_markov_chains.ipynb)
   - [Matrix_decompositions](./fastai_NLA_nbs/Matrix_decompositions.ipynb)

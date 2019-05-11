@@ -13,6 +13,7 @@
   - [ufw 设置防火墙](#ufw-%E8%AE%BE%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99)
   - [克隆带有子模块的库](#%E5%85%8B%E9%9A%86%E5%B8%A6%E6%9C%89%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BA%93)
   - [撤销还未 commit 的本地修改](#%E6%92%A4%E9%94%80%E8%BF%98%E6%9C%AA-commit-%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9)
+  - [fork 同步](#fork-%E5%90%8C%E6%AD%A5)
   - [参考文献](#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE)
 
 ## 常用命令行操作
@@ -331,6 +332,42 @@ $ git checkout master # 切换到主分支
 $ git checkout -- filename # or . 表示所有的文件
 ```
 
+## fork 同步
+
+当我们fork一个项目后，在我们使用代码的时候就会以我们本地为准，不会跟随我们fork前的项目，如果需要同步对方的代码，需要进行同步操作
+
+1. 首先我们先看下远端现有分支
+```bash
+$ git remote -v
+```
+2. 为fork的项目配置分支
+```bash
+$ git remote add upstream https://github.com/**/***.git
+$ git remote -v
+```
+3. 获取 upstream 分支到本地
+```bash
+$ git fetch upstream
+```
+4. 切换到本地master分支
+```bash
+$ git checkout master
+```
+5. 同步到主分支
+```bash
+$ git merge upstream/master
+```
+6. push
+```bash
+$ git push
+```
+
+**upstream 是原始仓库的名字**
+
+
 ## 参考文献
 1. [Linux工具快速教程 — Linux Tools Quick Tutorial](https://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)
 2. [Fast.ai v3 2019课程中文版笔记 - Part 1 (2019) / UTC+8 China / SE Asia - Deep Learning Course Forums](https://forums.fast.ai/t/fast-ai-v3-2019/39325)
+3. [github仓库与原始仓库同步的两种方法](http://blog.csdn.net/libing403/article/details/51732204/)
+2. [github同步fork别人的项目到自己的仓库](https://segmentfault.com/a/1190000003703918)
+3. [Github进行fork后如何与原仓库同步 - CSDN博客](http://blog.csdn.net/kongying19910218/article/details/50516646)

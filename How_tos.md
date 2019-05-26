@@ -331,6 +331,11 @@ $ git checkout master # 切换到主分支
 $ git checkout -- filename # or . 表示所有的文件
 ```
 
+## 子模块
+```bash
+git submodule update --init --recursive
+```
+
 ## 参考文献
 1. [Linux工具快速教程 — Linux Tools Quick Tutorial](https://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)
 2. [Fast.ai v3 2019课程中文版笔记 - Part 1 (2019) / UTC+8 China / SE Asia - Deep Learning Course Forums](https://forums.fast.ai/t/fast-ai-v3-2019/39325)

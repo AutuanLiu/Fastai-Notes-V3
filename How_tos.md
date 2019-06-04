@@ -332,6 +332,11 @@ $ git checkout master # 切换到主分支
 $ git checkout -- filename # or . 表示所有的文件
 ```
 
+## 子模块
+```bash
+git submodule update --init --recursive
+```
+
 ## fork 同步
 
 当我们fork一个项目后，在我们使用代码的时候就会以我们本地为准，不会跟随我们fork前的项目，如果需要同步对方的代码，需要进行同步操作

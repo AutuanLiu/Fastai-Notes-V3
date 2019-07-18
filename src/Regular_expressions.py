@@ -1,7 +1,7 @@
 import re
 
 # 同时提取 月 日
-regex = r"^([a-zA-Z]+) (\d+)$"  # 必须使用 raw string
+regex = r"^([a-zA-Z]+) (\d+)$"    # 必须使用 raw string
 if re.search(regex, "June 24"):
     match = re.search(regex, "June 24")
 

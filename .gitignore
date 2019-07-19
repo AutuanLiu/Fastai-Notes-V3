@@ -109,3 +109,4 @@ venv.bak/
 datasets/
 data/
 .pth
+*.onnx

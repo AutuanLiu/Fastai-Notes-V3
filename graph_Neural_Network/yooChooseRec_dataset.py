@@ -1,10 +1,11 @@
 import gc
-import torch
 import pickle
 from pathlib import Path
+
 import pandas as pd
+import torch
 from sklearn.preprocessing import LabelEncoder
-from torch_geometric.data import InMemoryDataset, Data
+from torch_geometric.data import Data, InMemoryDataset
 from tqdm import tqdm
 
 
@@ -19,30 +20,38 @@ class YooChooseBinaryDataset(InMemoryDataset):
 
     @property
     def processed_file_names(self):
-        return [Path(self.processed_dir)/'click_binary.pt']
+        # return ['click_binary100w.pt']
+        return ['click_binary.pt']    # for whole dataset
 
     def download(self):
         pass
 
     def process(self):
         data_list = []
-        clicks = pd.read_csv(root/'clicks_pro.csv', encoding='utf-8', low_memory=False)
+        clicks = pd.read_csv(root / 'clicks_pro.csv', encoding='utf-8', low_memory=False)  # 使用全部数据
+        # clicks = pd.read_csv(root / 'clicks_pro_100m.csv', encoding='utf-8', low_memory=False)    # 使用部分数据
+
         # process by session_id
         grouped = clicks.groupby('session_id')
+        lens = clicks.session_id.unique().shape[0]
 
-        for session_id, group in tqdm(grouped):
+        # clicks 不需要常驻内存, 并且使用动态加载
+        del clicks
+
+        for session_id, group in tqdm(iter(grouped), total=lens):
             # 重新编码，作为节点的顺序
-            # sess_item_id = LabelEncoder().fit_transform(group.item_id)
+            sess_item_id = LabelEncoder().fit_transform(group.item_id)
 
             # 重建索引
-            # group = group.reset_index(drop=True)
-            group['sess_item_id'] = LabelEncoder().fit_transform(group.item_id)
-            
+            group = group.reset_index(drop=True)
+            group['sess_item_id'] = sess_item_id
+
             # 节点的初始特征
             # 重复的浏览记录当做一次记录
             # 使用 item id 作为节点特征
             # 每个子表 group 都有同样的 session id
-            node_features = group.loc[group.session_id == session_id, ['sess_item_id', 'item_id']].sort_values('sess_item_id').item_id.drop_duplicates().values
+            node_features = group.loc[group.session_id == session_id, ['sess_item_id', 'item_id']].sort_values(
+                'sess_item_id').item_id.drop_duplicates().values
             node_features = torch.LongTensor(node_features).unsqueeze(1)
 
             # 序列访问的顺序
@@ -61,9 +70,9 @@ class YooChooseBinaryDataset(InMemoryDataset):
         torch.save((data, slices), self.processed_paths[0])
 
 
-if __name__ ==   '__main__':
+if __name__ == '__main__':
     root = Path('../data/yoochoose-data/')
-    dataset  =  YooChooseBinaryDataset(root=root)
+    dataset = YooChooseBinaryDataset(root=root)
 
-    with open(root/'clicks_dataset.pkl', 'wb') as f:
+    with open(root / 'clicks_dataset.pkl', 'wb') as f:
         pickle.dump(dataset, f)

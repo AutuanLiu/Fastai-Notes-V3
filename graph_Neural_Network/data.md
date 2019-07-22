@@ -19,3 +19,5 @@
 5. FAUST
 6. ModelNet10/40
 7. ShapeNet
+8. [shiruipan/graph_datasets: A Repository of Benchmark Graph Datasets for Graph Classification (31 Graph Datasets In Total).](https://github.com/shiruipan/graph_datasets)
+9. [RecSys Challenge 2015 - Challenge](https://2015.recsyschallenge.com/challenge.html?source=post_page)

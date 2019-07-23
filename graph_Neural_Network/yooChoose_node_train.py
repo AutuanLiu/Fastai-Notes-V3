@@ -6,8 +6,8 @@ from sklearn.metrics import roc_auc_score
 from torch import nn, optim
 from torch_geometric.data import DataLoader
 
-from yooChooseModel import Net
-from yooChooseRec_dataset import YooChooseBinaryDataset
+from yooChooseModel import NetNode
+from yooChooseRec_dataset_node import YooChooseBinaryDatasetNode
 
 
 def train():
@@ -17,10 +17,10 @@ def train():
     for data in train_loader:
         data = data.to(device)
         optimizer.zero_grad()
-        print(data)
         output = model(data)
+
         label = data.y.to(device)
-        loss = criterion(output, label)
+        loss = crit(output, label)
         loss.backward()
         loss_all += data.num_graphs * loss.item()
         optimizer.step()
@@ -40,6 +40,7 @@ def evaluate(loader):
         label = data.y.detach().cpu().numpy()
         predictions.append(pred)
         labels.append(label)
+
     predictions = np.hstack(predictions)
     labels = np.hstack(labels)
     return roc_auc_score(labels, predictions)
@@ -48,18 +49,17 @@ def evaluate(loader):
 if __name__ == '__main__':
     #  各种设置
     lr, bs, ps = 0.001, 512, 0.5
-    sparse_sz, emb_sz = 37495, 128    # sparse_sz = clicks.item_id.max() + 1
-    # sparse_sz, emb_sz = 48256, 128    # for whole dataset
+    num_items, num_categories = 37197， 264
+    emb_sz = 128
     num_epochs = 10
     root = Path('../data/yoochoose-data/')
-    # device = torch.device('cuda: 0' if torch.cuda.is_available() else 'cpu')
-    device = torch.device( 'cpu')
-    model = Net(sparse_sz, emb_sz=emb_sz, p=ps).to(device)
+    device = torch.device('cuda: 0' if torch.cuda.is_available() else 'cpu')
+    model = Net(, emb_sz=emb_sz, p=ps).to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.BCELoss()
 
     # 数据集相关
-    dataset = YooChooseBinaryDataset(root=root)
+    dataset = YooChooseBinaryDatasetNode(root=root)
     dataset = dataset.shuffle()
     train_dataset, val_dataset, test_dataset = dataset[:800000], dataset[800000:900000], dataset[900000:]
     print(len(train_dataset))

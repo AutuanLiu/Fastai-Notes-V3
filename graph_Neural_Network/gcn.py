@@ -10,7 +10,7 @@ from torch_geometric.nn import ChebConv, GCNConv    # noqa
 dataset = 'Cora'
 path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'data', dataset)
 dataset = Planetoid(path, dataset, T.NormalizeFeatures())
-data = dataset[0]
+data = dataset.data
 
 
 class Net(torch.nn.Module):

@@ -7,7 +7,7 @@ from torch import nn, optim
 from torch_geometric.data import DataLoader
 
 from yooChooseModel import NetNode
-from yooChooseRec_dataset_node import YooChooseBinaryDatasetNode
+from yooChooseRec_dataset import YooChooseDatasetNode
 
 
 def train():
@@ -15,16 +15,17 @@ def train():
 
     loss_all = 0
     for data in train_loader:
+        # 这里要动态加载数据到GPU合理利用资源
         data = data.to(device)
         optimizer.zero_grad()
         output = model(data)
 
         label = data.y.to(device)
-        loss = crit(output, label)
+        loss = criterion(output, label)
         loss.backward()
         loss_all += data.num_graphs * loss.item()
         optimizer.step()
-    return loss_all / len(train_dataset)
+    return loss_all / len_train
 
 
 @torch.no_grad()
@@ -48,21 +49,21 @@ def evaluate(loader):
 
 if __name__ == '__main__':
     #  各种设置
-    lr, bs, ps = 0.001, 512, 0.5
-    num_items, num_categories = 37197， 264
+    lr, bs, ps = 0.001, 1024, 0.5
+    num_items, num_categories = 37197, 264
     emb_sz = 128
     num_epochs = 10
     root = Path('../data/yoochoose-data/')
     device = torch.device('cuda: 0' if torch.cuda.is_available() else 'cpu')
-    model = Net(, emb_sz=emb_sz, p=ps).to(device)
+    model = NetNode(num_items, num_categories, emb_sz=emb_sz, p=ps).to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.BCELoss()
 
     # 数据集相关
-    dataset = YooChooseBinaryDatasetNode(root=root)
+    dataset = YooChooseDatasetNode(root=root)
     dataset = dataset.shuffle()
     train_dataset, val_dataset, test_dataset = dataset[:800000], dataset[800000:900000], dataset[900000:]
-    print(len(train_dataset))
+    len_train = 800000
 
     # loaders
     train_loader = DataLoader(train_dataset, batch_size=bs)
@@ -80,3 +81,5 @@ if __name__ == '__main__':
         print(
             f'Epoch: {epoch:03d}, Loss: {loss:.5f}, Train Auc: {train_auc:.5f}, Val Auc: {val_auc:.5f}, Test Auc: {test_auc:.5f}'
         )
+
+#  test AUC 0.72

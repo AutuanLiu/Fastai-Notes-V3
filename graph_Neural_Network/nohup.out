@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "yooChoose_node_train.py", line 64, in <module>
+    dataset = dataset.shuffle()
+  File "/home/lyc/miniconda3/envs/pyg/lib/python3.6/site-packages/torch_geometric/data/in_memory_dataset.py", line 98, in shuffle
+    dataset = self.__indexing__(perm)
+  File "/home/lyc/miniconda3/envs/pyg/lib/python3.6/site-packages/torch_geometric/data/in_memory_dataset.py", line 118, in __indexing__
+    copy.data, copy.slices = self.collate([self.get(i) for i in index])
+  File "/home/lyc/miniconda3/envs/pyg/lib/python3.6/site-packages/torch_geometric/data/in_memory_dataset.py", line 118, in <listcomp>
+    copy.data, copy.slices = self.collate([self.get(i) for i in index])
+  File "/home/lyc/miniconda3/envs/pyg/lib/python3.6/site-packages/torch_geometric/data/in_memory_dataset.py", line 111, in get
+    slices[idx], slices[idx + 1])
+  File "/home/lyc/miniconda3/envs/pyg/lib/python3.6/site-packages/torch_geometric/data/data.py", line 138, in __cat_dim__
+    def __cat_dim__(self, key, value):
+KeyboardInterrupt
+Epoch: 000, Loss: 0.36976, Train Auc: 0.65876, Val Auc: 0.64744, Test Auc: 0.64266
+Epoch: 001, Loss: 0.26116, Train Auc: 0.72044, Val Auc: 0.69977, Test Auc: 0.69660
+Epoch: 002, Loss: 0.23256, Train Auc: 0.76502, Val Auc: 0.73501, Test Auc: 0.73164
+Epoch: 003, Loss: 0.21423, Train Auc: 0.79446, Val Auc: 0.75584, Test Auc: 0.75352
+Epoch: 004, Loss: 0.20134, Train Auc: 0.81740, Val Auc: 0.76736, Test Auc: 0.76814
+Epoch: 005, Loss: 0.19220, Train Auc: 0.83147, Val Auc: 0.77344, Test Auc: 0.77409
+Epoch: 006, Loss: 0.18357, Train Auc: 0.84452, Val Auc: 0.77666, Test Auc: 0.77851
+Epoch: 007, Loss: 0.17741, Train Auc: 0.85696, Val Auc: 0.77777, Test Auc: 0.77973
+Epoch: 008, Loss: 0.17214, Train Auc: 0.86428, Val Auc: 0.77744, Test Auc: 0.77740
+Epoch: 009, Loss: 0.16633, Train Auc: 0.87487, Val Auc: 0.77484, Test Auc: 0.77586

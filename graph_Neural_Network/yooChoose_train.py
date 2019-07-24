@@ -17,14 +17,14 @@ def train():
     for data in train_loader:
         data = data.to(device)
         optimizer.zero_grad()
-        print(data)
         output = model(data)
+
         label = data.y.to(device)
         loss = criterion(output, label)
         loss.backward()
         loss_all += data.num_graphs * loss.item()
         optimizer.step()
-    return loss_all / len(train_dataset)
+    return loss_all / len_train
 
 
 @torch.no_grad()
@@ -40,6 +40,7 @@ def evaluate(loader):
         label = data.y.detach().cpu().numpy()
         predictions.append(pred)
         labels.append(label)
+
     predictions = np.hstack(predictions)
     labels = np.hstack(labels)
     return roc_auc_score(labels, predictions)
@@ -47,8 +48,8 @@ def evaluate(loader):
 
 if __name__ == '__main__':
     #  各种设置
-    lr, bs, ps = 0.001, 512, 0.5
-    sparse_sz, emb_sz = 37495, 128    # sparse_sz = clicks.item_id.max() + 1
+    lr, bs, ps = 0.001, 1024, 0.5
+    sparse_sz, emb_sz = 37197, 128    # sparse_sz = clicks.item_id.max() + 1
     # sparse_sz, emb_sz = 48256, 128    # for whole dataset
     num_epochs = 10
     root = Path('../data/yoochoose-data/')
@@ -62,7 +63,7 @@ if __name__ == '__main__':
     dataset = YooChooseBinaryDataset(root=root)
     dataset = dataset.shuffle()
     train_dataset, val_dataset, test_dataset = dataset[:800000], dataset[800000:900000], dataset[900000:]
-    print(len(train_dataset))
+    len_train = 800000
 
     # loaders
     train_loader = DataLoader(train_dataset, batch_size=bs)
@@ -80,3 +81,5 @@ if __name__ == '__main__':
         print(
             f'Epoch: {epoch:03d}, Loss: {loss:.5f}, Train Auc: {train_auc:.5f}, Val Auc: {val_auc:.5f}, Test Auc: {test_auc:.5f}'
         )
+
+#  test auc: 0.78

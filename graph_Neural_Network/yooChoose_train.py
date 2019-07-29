@@ -53,8 +53,7 @@ if __name__ == '__main__':
     # sparse_sz, emb_sz = 48256, 128    # for whole dataset
     num_epochs = 10
     root = Path('../data/yoochoose-data/')
-    # device = torch.device('cuda: 0' if torch.cuda.is_available() else 'cpu')
-    device = torch.device( 'cpu')
+    device = torch.device('cuda: 0' if torch.cuda.is_available() else 'cpu')
     model = Net(sparse_sz, emb_sz=emb_sz, p=ps).to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.BCELoss()

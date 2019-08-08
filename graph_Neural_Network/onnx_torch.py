@@ -2,8 +2,8 @@
 import torch
 import torchvision
 
-dummy_input = torch.randn(10, 3, 224, 224, device='cuda')
-model = torchvision.models.alexnet(pretrained=True).cuda()
+dummy_input = torch.randn(10, 3, 224, 224, device='cpu')
+model = torchvision.models.alexnet(pretrained=True)
 
 # Providing input and output names sets the display names for values
 # within the model's graph. Setting these does not change the semantics
@@ -35,12 +35,13 @@ onnx.helper.printable_graph(model.graph)
 import caffe2.python.onnx.backend as backend
 import numpy as np
 
-rep = backend.prepare(model, device="CUDA:0")    # or "CPU"
+rep = backend.prepare(model, device="cpu")    # or "CPU"
 # For the Caffe2 backend:
 #     rep.predict_net is the Caffe2 protobuf for the network
 #     rep.workspace is the Caffe2 workspace for the network
 #       (see the class caffe2.python.onnx.backend.Workspace)
 outputs = rep.run(np.random.randn(10, 3, 224, 224).astype(np.float32))
+
 # To run networks with more than one input, pass a tuple
 # rather than a single numpy ndarray.
 print(outputs[0])

@@ -110,3 +110,7 @@ datasets/
 data/
 .pth
 *.onnx
+xlearn_log*
+*.out
+*.txt
+*.bin

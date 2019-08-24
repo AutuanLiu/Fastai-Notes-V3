@@ -114,3 +114,4 @@ xlearn_log*
 *.out
 *.txt
 *.bin
+*.model
